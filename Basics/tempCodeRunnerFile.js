@@ -1,2 +1,9 @@
-let myArr = [12,3,45,7,3,5];
-console.log(Math.max(...myArr));
+// Prevents global namespace pollution.
+let p = "Global var";
+
+(() => {
+    // let p = "IIFE var";
+    console.log(p);             // IIFE var
+})();
+
+console.log(p);  

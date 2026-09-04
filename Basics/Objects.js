@@ -191,3 +191,25 @@ const rows = [
 
 const insaan = Object.fromEntries(rows);
 console.log(insaan);
+
+//---------------------Practice---------------------//
+
+// Que - Create a symbol and add it to an Object as key.
+const sym = Symbol("myKey");
+
+const object = {
+    [sym] : "A symbol",
+}
+
+console.log(object[sym]);
+
+// Que - Add a function in the object.
+object.greet = function(){
+    console.log("Hello, World!");
+}
+object.greet();
+
+
+// Point to remember - 
+const o1 = new Object();     // creates a singleton object.
+const o2 = {};              // creates a non-singleton object.
