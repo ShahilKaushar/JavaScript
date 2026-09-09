@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event 06</title>
+</head>
+<body>
+    <h2>Project: Print Your name with Timestamp</h2>
+    <button id="start">Start Printing Name & Timestamp</button>
+    <button id="stop">Stop Printing Name & Timestamp</button>
+</body>
+<script>
+    function addName(name){
+        e = document.createElement("span");
+        e.innerHTML = `</br>${name} Timestamp: ${Date.now()}`;
+        document.body.appendChild(e);
+    }
+
+    let id = null;
+    document.querySelector("#start").addEventListener("click", () =>{
+        id = setInterval(addName,1000,"Faisal")
+    })
+
+    document.querySelector("#stop").addEventListener("click",() =>{
+        clearInterval(id)
+    })
+</script>
+</html>

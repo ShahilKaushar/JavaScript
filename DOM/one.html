@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        body{
+            background-color: #5a5555;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 id="heading">Welcome to the DOM</h1>
+        <p class="para1">Hello, I am learning JS.</p>
+        <p class="para2">Hello, I am learning DOM in JS.</p>
+    </div>
+    <ul>
+        <li class="fruits">Apple</li>
+        <li class="fruits">Boy</li>
+        <li class="fruits">Cat</li>
+        <li class="fruits">Dog</li>
+    </ul>
+    <div id="parent" class="super">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wedbesday</div>
+        <div class="day">Thursday</div>
+        <div class="day">Friday</div>
+        <div class="day">Saturday</div>
+        <div class="day">Sunday</div>
+    </div>
+</body>
+<script>
+    let el = document.querySelector(".super");
+    console.log(el);
+    console.log(el.children)
+    console.log(el.children[0].innerHTML)
+    children = el.children
+    console.log(children[2].innerHTML)
+    children[2].innerHTML = "Wednesday"
+    for (let i = 0; i < children.length; i++) {
+        console.log(children[i].innerHTML);
+    }
+    console.log(children[0].parentElement);
+    childOne = el.firstElementChild
+    console.log(childOne)
+    childLast = el.lastElementChild
+    console.log(childLast)
+    childTwo = childOne.nextElementSibling
+    console.log(childTwo)
+    console.log(el.childNodes)
+
+    // Create an element -
+    let div = document.createElement("div")
+    div.id = "myID"
+    div.className = "myClass"
+    div.setAttribute("attr","container")
+    div.style.backgroundColor = "red"
+    div.style.padding = "15px"
+    div.style.borderRadius = "15px"
+    div.innerHTML = "Auto-dracarys : Caraxes</br>"
+    const addMe = document.createTextNode("Hello, Jarvis")
+    div.appendChild(addMe)
+    document.body.appendChild(div)
+
+    // Create a list -
+    const skills = ["JavaScript","Java","C","Python","MySQL"]
+    const list = document.createElement("ul")
+    list.setAttribute("class","list");
+    document.body.appendChild(list)
+
+    skills.forEach((skill) => {
+        additem(skill)
+    })
+    function additem(skill){
+        let list_item = document.createElement("li")
+        list_item.appendChild(document.createTextNode(skill))
+        document.querySelector(".list").appendChild(list_item);
+    }
+
+    // Edit list item - 
+    // Method 1 - 
+    let skill2 = document.querySelector("li:nth-child(2)");
+    skill2.innerText = "TypeScript";
+
+    // Method 2 - 
+    let skill3 = document.querySelector("li:nth-child(3)")
+    skill3.outerHTML = "<li>Golang</li>"
+
+    // Method 3 -
+    let skill5 = document.querySelector("li:last-child")
+    let newSkill = document.createElement("li").appendChild(document.createTextNode("MongoDB"))
+    skill5.replaceWith(newSkill)
+
+    // remove list item - 
+    newSkill.remove()
+</script>
+</html>

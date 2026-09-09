@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: rgba(0, 0, 0, 0.571);">
+    <ul id="list">
+        <li><img id="g1" height="140" width="150" src="https://images.pexels.com/photos/39367030/pexels-photo-39367030.jpeg" alt="Girl 1" onclick="alert('Hello Girl 1')"></li>
+        <li><img id="g2" height="140" width="150" src="https://images.pexels.com/photos/39327877/pexels-photo-39327877.jpeg" alt="Girl 2"></li>
+        <li><img id="colors" height="120" src="https://images.pexels.com/photos/57724/color-colored-powder-india-holipulver-colorful-57724.jpeg" alt="Colors"></li>
+        <li><img id="window" height="120" src="https://images.pexels.com/photos/8662308/pexels-photo-8662308.jpeg" alt="Window wallpaper"></li>
+        <li><img id="bw" height="120" src="https://images.pexels.com/photos/4185948/pexels-photo-4185948.jpeg" alt="Black & white"></li>
+        <li><a id="google" href="https://www.google.com">Google</a></li>
+    </ul>
+    <ol>
+        <li id="fruit1">Apple</li>
+        <li id="fruit2">Banana</li>
+        <li id="fruit3">Lichi</li>
+    </ol>
+</body>
+<script>
+    // attachEvent() - purane jamane me use hota tha
+    // jQuery - on - a framework like react in old days.
+
+    // Event Handling - 
+    // Method 1 - (Provids less features: not recommended)
+    document.getElementById("g2").onclick = () => alert('Hello Girl 2');
+
+    // Method 2 - (Highly recommended)
+    document.getElementById("colors").addEventListener("click",() => alert("Colors is clicked"),false);
+
+    // Event Object - 
+    document.getElementById("window").addEventListener("click", function(e){
+        console.log(e);
+    }, false);
+
+    // Propogation - 
+        // false - Bubbling (bottom to up)
+        // true - Capturing (top to bottom)
+
+    // Propogation bubbling -
+    document.getElementById("list").addEventListener("click",(e) => {
+        console.log("Image List clicked!")
+    },false);
+
+    document.getElementById("window").addEventListener("click",function(e){
+        console.log("window clicked!")
+    },false);
+
+    // Propogation capturing - 
+    document.querySelector("ol").addEventListener("click",() => {
+        console.log("Fruits clicked!")
+    },true);
+
+    document.getElementById("fruit1").addEventListener("click", function(){
+        console.log("Apple clicked!")
+    },true);
+
+    // Stop propogation -
+    document.querySelector("#g1").addEventListener("click",function(e){
+        console.log("Girl one clicked.");
+        e.stopPropagation();
+    },false)
+
+    // Prevent default behavior of an element: preventDefault() -
+    document.querySelector("#google").addEventListener("click",(q) => {
+        console.log("Google clicked")
+        q.preventDefault();     // Don't lets the link redirect to google
+        q.stopPropagation();    // stops propogation
+    })
+
+    // Write a script to remove an item from the page when clicked.
+    document.querySelector("#list").addEventListener("click",function(e){
+        let removeMe = e.target.parentNode
+        // removeMe.parentNode.removeChild(removeMe);
+        // removeMe.remove()       // modern and easy to use
+        if (removeMe.tagName === "LI"){
+            removeMe.remove();
+        }
+    })
+</script>
+</html>
